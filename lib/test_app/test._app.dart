@@ -32,7 +32,6 @@ class TestAppJson extends StatelessWidget {
     var linkTwo = User.fromJson(json[1]).about;
   }
 
-  
   @override
   Widget build(BuildContext context) {
     getUser(context);
@@ -45,7 +44,7 @@ class TestAppJson extends StatelessWidget {
               const SizedBox(height: 100),
               Center(
                   child: Container(
-                child: Text("$linkTwo"),
+                child: Text("Пробный вариант"),
               )),
             ],
           ),
