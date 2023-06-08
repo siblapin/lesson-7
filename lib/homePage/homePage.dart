@@ -22,6 +22,7 @@ class User {
 }
 
 class HomePage extends StatefulWidget {
+  static const routeName = '/';
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -90,30 +91,45 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Column(
-          children: users
-              .map((e) => SizedBox(
-                    width: 150,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/JsonText');
-                        },
-                        child: Text(e.name)),
-                  ))
-              .toList()),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+            children: users
+                .map((e) => SizedBox(
+                      width: 150,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                              '/JsonText',
+                              arguments: e.about,
+                            );
+                          },
+                          child: Text(e.name)),
+                    ))
+                .toList()),
+      ),
     ));
   }
 }
 
-class JsonText extends StatelessWidget {
-  JsonText({
-    Key? key,
-  }) : super(key: key);
+class JsonText extends StatefulWidget {
+  static const routeName = '/JsonText';
+  var name;
+  var Review;
+  JsonText({Key? key, this.Review, this.name}) : super(key: key);
 
   @override
+  State<JsonText> createState() => _JsonTextState();
+}
+
+class _JsonTextState extends State<JsonText> {
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(child: Text('')),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('${widget.name}'),
+      ),
+      body: SafeArea(child: Text('${widget.Review}')),
     );
   }
 }

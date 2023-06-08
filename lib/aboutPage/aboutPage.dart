@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatefulWidget {
+  static const routeName = '/About';
   const AboutPage({Key? key}) : super(key: key);
 
   @override
